@@ -39,8 +39,6 @@ vars:
   vcity: "'Madrid'"
  
 
-on-run-end:  "{{ dq_tools.store_test_results(results) }}"
-
 models: 
 
   +pre-hook: 
