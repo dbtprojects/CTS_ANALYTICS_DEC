@@ -37,8 +37,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 vars:
   vcity: "'Madrid'"
-  dbt_dq_tool_schema: "{{env_var('DBT_AUDITSCHEMA', 'AUDITING_DEV')}}"
-  dq_tools_enable_store_test_results: True
+ 
 
 on-run-end:  "{{ dq_tools.store_test_results(results) }}"
 
@@ -49,6 +48,3 @@ models:
   +post-hook:
     - "update {{env_var('DBT_AUDITSCHEMA', 'AUDITING_DEV')}}.qwt_models_auditinfo set endtime = current_timestamp(), duration = datediff('second', starttime, current_timestamp()) where modelname= '{{this}}' and endtime is null;"
   
-  dq_tools:
-   
-    +schema: "{{env_var('DBT_AUDITSCHEMA', 'AUDITING_DEV')}}"
